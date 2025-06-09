@@ -8,6 +8,7 @@ import ReposList from "./components/ReposList"
 function App() {
 
   const [formularioEstaVisivel, setFormularioEstaVisivel] = useState(true)
+  const [nomeUsuario, setNomeUsuario] = useState('')
 
   let pessoa = {
     nome: 'Maria'
@@ -17,10 +18,13 @@ function App() {
 
   return(
     <>
-    <Perfil nome='Guilherme Mascarenhas' endereco='https://github.com/GuilhermeocM.png' />
-    
-
-    <ReposList />
+    {nomeUsuario.length > 4 && (
+      <Perfil nomeUsuario={nomeUsuario} />
+    )}
+    <input type="text" onBlur={(e) => setNomeUsuario(e.target.value)} />
+    {nomeUsuario.length > 4 && (
+      <ReposList nomeUsuario={nomeUsuario} />
+    )}
     
     {formularioEstaVisivel && <Formulario />}
 
